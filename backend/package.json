@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
   "dependencies": {
     "@prisma/client": "^7.2.0",
     "bcrypt": "^6.0.0",
