@@ -1,80 +1,180 @@
-import { ProjectService } from "../service/project.service"
+import { ProjectService } from "../service/project.service";
 
+class FakeProjectRepository {
+  private projects: any[] = [];
 
-class FakeProjectRepository{
-    private projects: any[] = []
+  async create(data: any) {
+    const project = { id: crypto.randomUUID(), ...data };
+    this.projects.push(project);
+    return project;
+  }
 
-    async create(data: any){
-        const project = {id:'1',...data}
-        this.projects.push(project)
-        return project
-    }
-    async update(id:string,data:any){
-        const index = this.projects.findIndex((u)=> u.id === id)
+  async findByUserId(userId: string) {
+    return this.projects.filter(p => p.userId === userId);
+  }
 
-        if(index === -1){
-            return null
-        }
-        this.projects[index]={
-            ...this.projects[index],
-            ...data
-        }
-    return this.projects[index]
-    }
-    async delete(id:number){
-     this.projects = this.projects.filter((u)=> u.id !== id)
-    }
+  async findById(id: string) {
+    return this.projects.find(p => p.id === id);
+  }
+
+  async update(id: string, data: any) {
+    const index = this.projects.findIndex(p => p.id === id);
+    if (index === -1) return null;
+
+    this.projects[index] = {
+      ...this.projects[index],
+      ...data,
+    };
+    return this.projects[index];
+  }
+
+  async delete(id: string) {
+    this.projects = this.projects.filter(p => p.id !== id);
+  }
 }
 
-describe('ProjectService - create', () => {
-    let repo: FakeProjectRepository
-    let service: ProjectService
+let repo: FakeProjectRepository;
+let service: ProjectService;
 
-    beforeEach(()=>{
-        repo = new FakeProjectRepository()
-        service = new ProjectService(repo as any)
-    })
-    it("should create a project", async () => {
-        const projeto = await service.create({name:'Todo',description:'Criado Com Sucesso'})
-    
-        expect(projeto).toHaveProperty('id')
-        expect(projeto.name).toBe('Todo')
-    })
+beforeEach(() => {
+  repo = new FakeProjectRepository();
+  service = new ProjectService(repo as any);
+});
 
-    it('should not create project without name ', async() => {
-       await expect(service.create({name:"",description:'Otimo Projeto'})
-    ).rejects.toThrow('Nome é Obrigatorio ')
+describe("ProjectService - create", () => {
+  it("should create a project", async () => {
+    const projeto = await service.create({
+      name: "Todo",
+      description: "Criado Com Sucesso",
+      userId: "user-1",
     });
 
-    it("should not allow duplicate project name for same user", async () => {
-        const projeto = await service.create({name:'Todo',description:'Criado Com Sucesso'})
+    expect(projeto).toHaveProperty("id");
+    expect(projeto.name).toBe("Todo");
+  });
 
-        await expect(service.create({name:'Todo',description:'Criado Com Sucesso'})
-    ).rejects.toThrow('Name already exist')
-    })
+  it("should not create project without name", async () => {
+    await expect(
+      service.create({
+        name: "",
+        userId: "user-1",
+      }),
+    ).rejects.toThrow("Name é Obrigatorio ");
+  });
 
+  it("should not create project without userId", async () => {
+    await expect(
+      service.create({
+        name: "Todo",
+        userId: "",
+      }),
+    ).rejects.toThrow("UserId é Obrigatorio");
+  });
 });
 
 describe("ProjectService - update", () => {
-    it("should update project data", async () => {})
-it("should not update non-existing project", async () => {})
-it("should not update project from another user", async () => {})
-})
+  it("should update project data", async () => {
+    const oldProject = await service.create({
+      name: "Todo",
+      userId: "user-1",
+    });
+
+    const updated = await service.update({
+      projectId: oldProject.id,
+      userId: "user-1",
+      name: "NewTodo",
+    });
+
+    expect(updated.name).toBe("NewTodo");
+  });
+
+  it("should not update non-existing project", async () => {
+    await expect(
+      service.update({
+        projectId: "invalid-id",
+        userId: "user-1",
+        name: "NewTodo",
+      }),
+    ).rejects.toThrow("Project not found");
+  });
+
+  it("should not update project from another user", async () => {
+    const project = await service.create({
+      name: "Todo",
+      userId: "user-1",
+    });
+
+    await expect(
+      service.update({
+        projectId: project.id,
+        userId: "user-2",
+        name: "NewTodo",
+      }),
+    ).rejects.toThrow("Owner not found");
+  });
+});
+
 describe("ProjectService - delete", () => {
-    it("should delete a project", async () => {})
+  it("should delete a project", async () => {
+    const project = await service.create({
+      name: "Todo",
+      userId: "user-1",
+    });
 
-it("should not delete non-existing project", async () => {})
+    await service.delete({
+      projectId: project.id,
+      userId: "user-1",
+    });
 
-it("should not delete project from another user", async () => {})
+    const projects = await service.list("user-1");
+    expect(projects).toHaveLength(0);
+  });
 
-})
+  it("should not delete non-existing project", async () => {
+    await expect(
+      service.delete({
+        projectId: "invalid-id",
+        userId: "user-1",
+      }),
+    ).rejects.toThrow("Project not found");
+  });
+
+  it("should not delete project from another user", async () => {
+    const project = await service.create({
+      name: "Todo",
+      userId: "user-1",
+    });
+
+    await expect(
+      service.delete({
+        projectId: project.id,
+        userId: "user-2",
+      }),
+    ).rejects.toThrow("Owner not found");
+
+    const projects = await service.list("user-1");
+    expect(projects).toHaveLength(1);
+  });
+});
+
 describe("ProjectService - list", () => {
-    
-it("should list all projects from user", async () => {})
+  it("should list all projects from user", async () => {
+    await service.create({
+      name: "Todo",
+      userId: "user-2",
+    });
 
+    const projects = await service.list("user-2");
+    expect(projects).toHaveLength(1);
+  });
 
-it("should not list projects from other users", async () => {})
+  it("should return empty array if user has no projects", async () => {
+    await service.create({
+      name: "Todo",
+      userId: "user-1",
+    });
 
-
-})
-    
+    const projects = await service.list("user-2");
+    expect(projects).toEqual([]);
+  });
+});
