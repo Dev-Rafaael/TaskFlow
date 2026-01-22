@@ -6,6 +6,18 @@ interface CreateProjectDTO {
   userId: string
 }
 
+interface UpdateProjectDTO {
+  projectId: string
+  userId: string
+  name?: string
+  description?: string
+  color?: string
+}
+
+interface DeleteProjectDTO {
+  projectId: string
+  userId: string
+}
 
 export class ProjectService{
     constructor(private repo:any){}
@@ -25,7 +37,7 @@ export class ProjectService{
         throw new Error('UserId é Obrigatorio')
       return  this.repo.findByUserId(userId)
     }
-    async update({projectId,userId,...data}){
+    async update({ projectId, userId, ...data }: UpdateProjectDTO){
       const project = await this.repo.findById(projectId)
       if(!project) throw new Error('Project not found')
 
@@ -33,7 +45,7 @@ export class ProjectService{
 
         return this.repo.update(projectId,data)
     }
-    async delete({projectId,userId}){
+    async delete({ projectId, userId }: DeleteProjectDTO){
       const project = await this.repo.findById(projectId)
       if(!project) throw new Error('Project not found')
 

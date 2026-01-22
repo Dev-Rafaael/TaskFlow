@@ -45,7 +45,6 @@ describe("ProjectService - create", () => {
   it("should create a project", async () => {
     const projeto = await service.create({
       name: "Todo",
-      description: "Criado Com Sucesso",
       userId: "user-1",
     });
 
