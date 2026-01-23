@@ -1,23 +1,11 @@
+import { CreateProjectDTO } from "../dtos/create-project.dto"
+import { DeleteProjectDTO } from "../dtos/delete-project.dto"
+import { ListProjectDTO } from "../dtos/list-project.dto"
+import { UpdateProjectDTO } from "../dtos/update-project.dto"
 
-interface CreateProjectDTO {
-  name: string
-  description?: string
-  color?: string
-  userId: string
-}
 
-interface UpdateProjectDTO {
-  projectId: string
-  userId: string
-  name?: string
-  description?: string
-  color?: string
-}
 
-interface DeleteProjectDTO {
-  projectId: string
-  userId: string
-}
+
 
 export class ProjectService{
     constructor(private repo:any){}
@@ -32,7 +20,7 @@ export class ProjectService{
       const project = await this.repo.create({name,description,color,userId})
       return project
     }
-    async list(userId:string){
+    async list({userId}:ListProjectDTO){
       if(!userId)
         throw new Error('UserId é Obrigatorio')
       return  this.repo.findByUserId(userId)

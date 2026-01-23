@@ -125,7 +125,7 @@ describe("ProjectService - delete", () => {
       userId: "user-1",
     });
 
-    const projects = await service.list("user-1");
+    const projects = await service.list({userId:"user-1"});
     expect(projects).toHaveLength(0);
   });
 
@@ -151,7 +151,7 @@ describe("ProjectService - delete", () => {
       }),
     ).rejects.toThrow("Owner not found");
 
-    const projects = await service.list("user-1");
+    const projects = await service.list({userId:"user-1"});
     expect(projects).toHaveLength(1);
   });
 });
@@ -163,17 +163,17 @@ describe("ProjectService - list", () => {
       userId: "user-2",
     });
 
-    const projects = await service.list("user-2");
+    const projects = await service.list({userId:"user-2"});
     expect(projects).toHaveLength(1);
   });
 
-  it("should return empty array if user has no projects", async () => {
+  it("should list all projects from user", async () => {
     await service.create({
       name: "Todo",
       userId: "user-1",
     });
 
-    const projects = await service.list("user-2");
+    const projects = await service.list({userId:"user-2"});
     expect(projects).toEqual([]);
   });
 });

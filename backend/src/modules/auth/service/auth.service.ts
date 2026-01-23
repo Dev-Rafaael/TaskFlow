@@ -1,16 +1,11 @@
 import jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
+import { RegisterDTO } from "../dtos/register.dto";
+import { LoginDTO } from "../dtos/login.dto";
 
 
-interface RegisterDTO {
-  email: string;
-  password: string;
-}
 
-interface LoginDTO {
-  email: string;
-  password: string;
-}
+
 export class AuthService {
   constructor(private repo: any) {}
 
