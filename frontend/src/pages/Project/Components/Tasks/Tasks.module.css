@@ -1,0 +1,29 @@
+.page {
+  min-height: 100vh;
+  padding: 32px 40px 48px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  background: radial-gradient(
+    1200px 600px at top left,
+    rgba(99, 102, 241, 0.08),
+    transparent
+  );
+}
+
+.boardWrapper {
+  flex: 1;
+  margin-top: 8px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px 32px;
+  }
+}

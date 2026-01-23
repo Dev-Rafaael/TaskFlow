@@ -1,0 +1,59 @@
+.container {
+  min-height: 100vh;
+  height: 100vh;
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+background: #020617;
+font-family: Inter, system-ui, -apple-system;
+
+}
+
+
+.left {
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(135deg, #1e1b4b, #020617);
+color: #e5e7eb;
+}
+
+
+.brand {
+max-width: 420px;
+}
+
+
+.brand h1 {
+font-size: 48px;
+font-weight: 900;
+margin-bottom: 16px;
+background: linear-gradient(135deg, #6366f1, #8b5cf6);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+
+.brand p {
+font-size: 18px;
+opacity: 0.85;
+line-height: 1.6;
+}
+
+
+.right {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+
+@media (max-width: 900px) {
+.container {
+grid-template-columns: 1fr;
+}
+
+
+.left {
+display: none;
+}
+}
