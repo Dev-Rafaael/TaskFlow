@@ -14,6 +14,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 background: linear-gradient(135deg, #1e1b4b, #020617);
+
 color: #e5e7eb;
 }
 
@@ -42,18 +43,97 @@ line-height: 1.6;
 
 .right {
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 }
 
+.link {
+  margin-top: 16px;
+  color: #ccc;
+  font-size: 14px;
+}
 
-@media (max-width: 900px) {
-.container {
-grid-template-columns: 1fr;
+.link a {
+  color: #6c63ff;
+  font-weight: bold;
+}
+
+@media (min-width: 360px) {
+  .brand h1 {
+    font-size: 38px;
+  }
+
+  .brand p {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 480px) {
+  .left {
+    padding: 64px 32px;
+  }
+
+  .brand h1 {
+    font-size: 42px;
+  }
+
+  .brand p {
+    font-size: 17px;
+  }
+
+  .right {
+    padding: 40px 32px;
+  }
 }
 
 
-.left {
-display: none;
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .left {
+    padding: 0;
+  }
+
+  .brand {
+    max-width: 420px;
+    text-align: left;
+  }
+
+  .brand h1 {
+    font-size: 48px;
+  }
+
+  .brand p {
+    font-size: 18px;
+  }
+
+  .right {
+    padding: 0;
+  }
 }
+
+
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .left {
+    background: linear-gradient(135deg, #1e1b4b, #020617);
+  }
+}
+
+
+@media (min-width: 1400px) {
+  .brand h1 {
+    font-size: 52px;
+  }
+
+  .brand p {
+    font-size: 19px;
+  }
 }

@@ -1,0 +1,219 @@
+/* =========================
+   NAVBAR BASE (DESKTOP)
+========================= */
+
+.navbar {
+  width: 260px;
+  min-height: 100vh;
+  background: rgba(2, 6, 23, 0.98);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  color: #e5e7eb;
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 900;
+  color: white;
+}
+
+.brand strong {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.link,
+.active {
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  font-size: 14px;
+  text-decoration: none;
+  color: #e5e7eb;
+
+  transition: background 0.2s ease;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.active {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.25),
+    rgba(139, 92, 246, 0.25)
+  );
+  font-weight: 600;
+}
+
+/* =========================
+   USER
+========================= */
+
+.user {
+  margin-top: auto;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 14px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  color: white;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.email {
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 60;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(4px);
+
+  z-index: 50;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+
+@media (max-width: 767px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 260px;
+
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    z-index: 55;
+  }
+
+  .navbar.open {
+    transform: translateX(0);
+  }
+  .brand{
+  
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+}

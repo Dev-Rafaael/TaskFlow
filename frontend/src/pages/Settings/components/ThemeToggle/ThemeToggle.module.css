@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 360px) {
+  .toggle {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h4 {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .toggle {
+    padding: 7px 12px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .toggle {
+    align-self: flex-end;
+  }
+}
+@media (max-width: 1024px) {
+  h4 {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .toggle {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    gap: 14px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    gap: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .toggle {
+    padding: 10px 18px;
+    border-radius: 14px;
+  }
+}
+
+.toggle:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle {
+    transition: none;
+  }
+}

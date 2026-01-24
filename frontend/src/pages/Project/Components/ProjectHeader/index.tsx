@@ -1,9 +1,7 @@
+import type { ProjectHeaderProps } from "../../../../types/types";
+
 import styles from "./ProjectHeader.module.css";
 
-interface ProjectHeaderProps {
-  title: string;
-  description?: string;
-}
 
 export default function ProjectHeader({
   title,
@@ -20,7 +18,7 @@ export default function ProjectHeader({
 
       <div className={styles.right}>
         <button className={styles.secondaryButton}>
-          Configurações
+           Configurações
         </button>
 
         <button className={styles.primaryButton}>

@@ -1,12 +1,6 @@
+import type { ProjectCardProps } from "../../../../types/types";
 import styles from "./ProjectCard.module.css";
 
-interface ProjectCardProps {
-  title: string;
-  description?: string;
-  color?: string;
-  progress?: number; // 0 a 100
-  onClick?: () => void;
-}
 
 export default function ProjectCard({
   title,

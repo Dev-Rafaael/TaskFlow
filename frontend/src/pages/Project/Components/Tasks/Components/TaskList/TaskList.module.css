@@ -6,7 +6,7 @@
   padding: 6px 4px;
 
   max-height: calc(100vh - 260px);
-  overflow-y: auto;
+ 
 }
 
 /* Scroll bonito */
@@ -25,4 +25,57 @@
 
 .list::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 480px) {
+  .list {
+    gap: 10px;
+    padding: 2px 0;
+
+    max-height: none;
+    height: auto;
+
+    overflow-y: visible;
+  }
+
+  
+  .list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .list {
+    scrollbar-width: none;  
+  }
+} 
+
+@media (max-width: 768px) {
+  .list {
+    gap: 12px;
+    padding: 4px 2px;
+    max-height: calc(100vh - 300px);
+  }
+
+  .list::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+
+@media (min-width: 1280px) {
+  .list {
+    gap: 16px;
+    padding: 8px 6px;
+    max-height: calc(100vh - 240px);
+  }
+
+  .list::-webkit-scrollbar {
+    width: 7px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .list {
+    scroll-behavior: auto;
+  }
 }

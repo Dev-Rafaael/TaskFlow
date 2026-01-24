@@ -1,0 +1,149 @@
+.container {
+  min-height: 100vh;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #e5e7eb;
+}
+
+.card {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  padding: 48px 32px;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.code {
+  font-size: 72px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.card p {
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
+}
+@media (min-width: 360px) {
+  .code {
+    font-size: 56px;
+  }
+}
+
+
+@media (min-width: 480px) {
+  .card {
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .code {
+    font-size: 60px;
+  }
+
+  .card h1 {
+    font-size: 20px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+
+  .card {
+    max-width: 420px;
+    padding: 44px 28px;
+    border-radius: 22px;
+  }
+
+  .code {
+    font-size: 68px;
+  }
+
+  .card h1 {
+    font-size: 21px;
+  }
+
+  .button {
+    padding: 14px 24px;
+    border-radius: 16px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 48px 32px;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .code {
+    font-size: 72px;
+  }
+
+  .card h1 {
+    font-size: 22px;
+  }
+}
+
+
+@media (min-width: 1400px) {
+  .container {
+    padding: 32px;
+  }
+
+  .card {
+    max-width: 460px;
+  }
+
+  .code {
+    font-size: 76px;
+  }
+}
+
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
+  }
+}

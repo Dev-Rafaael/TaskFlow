@@ -1,0 +1,101 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+.dangerOutline {
+  background: none;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+  padding: 12px 18px;
+  border-radius: 14px;
+}
+
+@media (max-width: 360px) {
+  .danger,
+  .dangerOutline {
+    padding: 12px 14px;
+  }
+}
+@media (max-width: 480px) {
+  .danger,
+  .dangerOutline {
+    padding: 13px 16px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .danger,
+  .dangerOutline {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .actions {
+    gap: 10px;
+  }
+
+  .danger,
+  .dangerOutline {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    gap: 14px;
+  }
+
+  .actions {
+    gap: 14px;
+  }
+
+  .danger,
+  .dangerOutline {
+    padding: 14px 22px;
+    border-radius: 16px;
+  }
+}
+
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .actions button {
+    transition: none;
+  }
+}

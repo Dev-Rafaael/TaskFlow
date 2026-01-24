@@ -1,15 +1,23 @@
 import { Outlet } from "react-router-dom";
-// import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
+
 import { ToastContainer } from "react-toastify";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
+<div style={{ display: "flex" }}>
+  <NavBar />
+
+  <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+    <main style={{ flex: 1 }}>
       <Outlet />
-      <ToastContainer />
-      {/* <Footer /> */}
+    </main>
+<ToastContainer/>
+    <Footer />
+  </div>
+</div>
     </>
   );
 }

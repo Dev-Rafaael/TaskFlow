@@ -1,36 +1,44 @@
 .container {
   min-height: 100vh;
-  display: flex;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  height: 100vh;
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+background: #020617;
+font-family: Inter, system-ui, -apple-system;
+
 }
 
-.brand {
-  flex: 1;
-  color: #fff;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+.left {
+  width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(135deg, #1e1b4b, #020617);
+color: #e5e7eb;
+
 }
 
 .brand h1 {
-  font-size: 56px;
+font-size: 48px;
+font-weight: 900;
+margin-bottom: 16px;
+background: linear-gradient(135deg, #6366f1, #8b5cf6);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
+
 
 .brand p {
-  margin-top: 12px;
-  max-width: 360px;
-  color: #ddd;
+font-size: 18px;
+opacity: 0.85;
+line-height: 1.6;
 }
-
-.card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
+.right {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .link {
@@ -42,4 +50,94 @@
 .link a {
   color: #6c63ff;
   font-weight: bold;
+}
+@media (max-width: 360px) {
+  .right {
+    padding: 16px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .right {
+    padding: 20px 12px;
+  }
+
+  .link {
+    margin-top: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .right {
+    padding: 24px 16px;
+  }
+
+  .link {
+    font-size: 13px;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brand h1 {
+    font-size: 44px;
+  }
+} 
+
+@media (min-width: 1400px) {
+  .container {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  .left {
+    padding: 64px;
+  }
+
+  .brand h1 {
+    font-size: 56px;
+  }
+
+  .brand p {
+    font-size: 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@supports (height: 100svh) {
+  .container {
+    min-height: 100svh;
+    height: 100svh;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

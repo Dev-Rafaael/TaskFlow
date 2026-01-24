@@ -1,0 +1,191 @@
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: white;
+}
+
+.identity strong {
+  font-size: 16px;
+}
+
+.identity span {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+input {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+}
+
+.button {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.45);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
+}
+
+@media (min-width: 360px) {
+  .avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 17px;
+  }
+
+  .identity strong {
+    font-size: 15px;
+  }
+}
+
+
+@media (min-width: 480px) {
+  .card {
+    padding: 22px;
+    border-radius: 20px;
+    gap: 18px;
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  .button {
+    align-self: flex-start;
+    padding: 12px 20px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .card {
+    max-width: 520px;
+    padding: 24px;
+    border-radius: 22px;
+    gap: 20px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .user {
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+
+  .identity strong {
+    font-size: 16px;
+  }
+
+  .identity span {
+    font-size: 13px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+
+  input {
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .button {
+    border-radius: 16px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .card {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+}
+
+@media (min-width: 1400px) {
+  .card {
+    max-width: 560px;
+  }
+}
+
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
+  }
+}

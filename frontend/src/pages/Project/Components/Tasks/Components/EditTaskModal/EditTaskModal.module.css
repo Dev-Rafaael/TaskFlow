@@ -162,3 +162,124 @@
 .delete:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .close {
+    font-size: 24px;
+  }
+
+  .form {
+    gap: 14px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    font-size: 15px;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+
+  .textarea {
+    min-height: 80px;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .submit,
+  .cancel {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .delete {
+    text-align: center;
+    width: 100%;
+    padding-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-width: 92%;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+
+@media (min-width: 1280px) {
+  .modal {
+    max-width: 580px;
+  }
+
+  .header h2 {
+    font-size: 24px;
+  }
+}

@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 
 import Login from "../pages/Login";
-import Home from "../pages/Home";
+
 import Register from "../pages/Register";
 import DashBoard from "../pages/Dashboard";
 import Project from "../pages/Project";
+import NotFound from "../pages/NotFound";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +16,7 @@ export const router = createBrowserRouter([
         <App />
     ),
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/DashBoard", element: <DashBoard /> },
       { path: "/login", element: <Login /> },
         {
         path: "/Cadastro",
@@ -27,6 +29,13 @@ export const router = createBrowserRouter([
          {
         path: "/Projetos",
         element: <Project />,
+        },
+        {
+        path: "/NotFound",
+        element: <NotFound />,
+        }, {
+        path: "/Profile",
+        element: < Profile/>,
         },
   
     ],

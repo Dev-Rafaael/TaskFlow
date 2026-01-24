@@ -75,3 +75,75 @@ box-shadow: 0 15px 30px rgba(99, 102, 241, 0.45);
 transform: translateY(-2px);
 box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
 }
+
+@media (min-width: 360px) {
+  .card {
+    padding: 36px 24px 28px;
+  }
+}
+
+
+@media (min-width: 480px) {
+  .card {
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .card h2 {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .button {
+    font-size: 15px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .card {
+    max-width: 24rem;
+    padding: 4rem 40px 40px;
+    border-radius: 24px;
+  }
+
+  .card h2 {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    margin-bottom: 28px;
+  }
+
+  .input {
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .button {
+    padding: 14px;
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  }
+}
+
+
+@media (min-width: 1400px) {
+  .card {
+    transform: translateY(0);
+  }
+}

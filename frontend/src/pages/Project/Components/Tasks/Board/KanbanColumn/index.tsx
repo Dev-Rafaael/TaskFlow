@@ -1,10 +1,6 @@
+import type { KanbanColumnProps } from "../../../../../../types/types";
 import styles from "./KanbanColumn.module.css";
 
-interface KanbanColumnProps {
-  title: string;
-  count: number;
-  status: "backlog" | "in_progress" | "done";
-}
 
 export default function KanbanColumn({
   title,

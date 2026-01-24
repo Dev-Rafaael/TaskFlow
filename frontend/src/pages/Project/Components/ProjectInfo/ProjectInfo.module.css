@@ -24,6 +24,7 @@
   opacity: 0.6;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: white;
 }
 
 .value {
@@ -62,4 +63,126 @@
   font-size: 13px;
   font-weight: 500;
   opacity: 0.85;
+  color: #946af4;
+}
+@media (min-width: 480px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+
+  .value {
+    font-size: 14.5px;
+  }
+
+  .progressBar {
+    height: 7px;
+  }
+
+  .progressText {
+    font-size: 12px;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+    padding: 18px 20px;
+  }
+
+  .item {
+    gap: 6px;
+  }
+
+  .value {
+    font-size: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px 24px;
+    border-radius: 18px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .progressWrapper {
+    gap: 10px;
+  }
+
+  .progressBar {
+    height: 8px;
+  }
+
+  .progressText {
+    font-size: 13px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    margin-top: 24px;
+    gap: 22px;
+  }
+
+  .value {
+    font-size: 15.5px;
+  }
+
+  .progressFill {
+    transition: width 0.4s ease;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    gap: 24px;
+    padding: 22px 26px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+
+  .progressText {
+    font-size: 13.5px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 28px;
+    border-radius: 20px;
+  }
+
+  .label {
+    font-size: 12.5px;
+  }
+
+  .value {
+    font-size: 16.5px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  .value {
+    font-size: 17px;
+  }
+
+  .progressBar {
+    height: 9px;
+  }
 }

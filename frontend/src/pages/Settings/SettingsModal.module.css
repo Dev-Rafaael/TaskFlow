@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal {
+  width: 100%;
+  max-width: 560px;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 24px;
+  padding: 24px;
+  color: #e5e7eb;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 360px) {
+  .modal {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .modal {
+    padding: 18px;
+  }
+
+  .section {
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    max-width: 100%;
+    width: 100%;
+
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+
+    max-height: 85svh;
+  }
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .section {
+    padding: 18px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .overlay {
+    padding: 20px;
+  }
+
+  .modal {
+    max-width: 520px;
+    padding: 22px;
+  }
+}
+@media (max-width: 1280px) {
+  .modal {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .modal {
+    max-width: 600px;
+    padding: 32px;
+    border-radius: 28px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  .section {
+    padding: 24px 0;
+  }
+}
+
+
+
+
+
+
+
+@supports (height: 100svh) {
+  .modal {
+    max-height: calc(100svh - 48px);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+}
