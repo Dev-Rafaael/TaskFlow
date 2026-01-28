@@ -1,0 +1,137 @@
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ===== Modal ===== */
+.modal {
+  background: #0f172a;
+  color: #e5e7eb;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 1.25rem;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+/* ===== Form ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.form input,
+.form textarea {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.form textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.submitButton {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   📱 480px
+========================= */
+@media (max-width: 480px) {
+  .modal {
+    max-width: 92%;
+    padding: 20px;
+  }
+
+  .header h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================
+   📱 768px
+========================= */
+@media (min-width: 768px) {
+  .modal {
+    max-width: 480px;
+  }
+}
+
+/* =========================
+   💻 1024px
+========================= */
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 520px;
+  }
+
+  .header h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* =========================
+   🖥️ 1400px
+========================= */
+@media (min-width: 1400px) {
+  .modal {
+    max-width: 600px;
+    padding: 32px;
+  }
+
+  .form input,
+  .form textarea {
+    font-size: 1rem;
+  }
+}

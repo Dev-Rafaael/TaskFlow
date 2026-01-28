@@ -1,6 +1,7 @@
 import styles from "./CreateTaskModal.module.css";
 
 export default function CreateTaskModal() {
+  
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>

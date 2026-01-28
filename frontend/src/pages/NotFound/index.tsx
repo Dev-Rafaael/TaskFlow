@@ -13,7 +13,7 @@ export default function NotFound() {
           A página que você tentou acessar não existe ou foi movida.
         </p>
 
-        <Link to="/" className={styles.button}>
+        <Link to="/DashBoard" className={styles.button}>
           Voltar para o Dashboard
         </Link>
       </div>

@@ -1,9 +1,10 @@
-import ChangePasswordForm from "./components/ChangePasswordForm";
+import { useAuthStore } from "../../stores/auth.store";
 import ProfileInfo from "./components/ProfileInfo";
 import styles from "./Profile.module.css";
 
 
 export default function Profile() {
+  const user = useAuthStore((state)=>state.user)
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -16,25 +17,28 @@ export default function Profile() {
           <div className={styles.avatar}>R</div>
 
           <div>
-            <h3>Rafael</h3>
-            <span>rafael@email.com</span>
+          {user && (
+            <>
+            <h3>{user.name || 'teste'}</h3>
+            <span>{user.email || 'teste@gmail.com'}</span>
+            </>
+          )}
           </div>
         </div>
 
         <div className={styles.info}>
           <label>
             Nome
-            <input value="Rafael" disabled />
+            <input value={user?.name || ''} disabled />
           </label>
 
           <label>
             Email
-            <input value="rafael@email.com" disabled />
+            <input value={user?.email || ''} disabled />
           </label>
         </div>
       </section>
          <ProfileInfo />
-      <ChangePasswordForm />
     </main>
   );
 }

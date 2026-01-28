@@ -1,24 +1,28 @@
+import { useState } from "react";
 import ProjectCard from "./components/ProjectCard";
 import StatsCard from "./components/StatsCard";
 import styles from "./Dashboard.module.css";
-
+import CreateProject from "./components/CreateProject";
 
 export default function Dashboard() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <main className={styles.page}>
-      {/* Header */}
       <header className={styles.header}>
         <div>
           <h1>Dashboard</h1>
           <p>Visão geral dos seus projetos e tarefas</p>
         </div>
 
-        <button className={styles.primaryButton}>
+        <button
+          className={styles.primaryButton}
+          onClick={() => setIsOpen(true)}
+        >
           + Novo Projeto
         </button>
+        <CreateProject isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </header>
 
-      {/* Stats */}
       <section className={styles.stats}>
         <StatsCard
           label="Projetos Ativos"
@@ -41,7 +45,6 @@ export default function Dashboard() {
         />
       </section>
 
-      {/* Projects */}
       <section className={styles.projects}>
         <h2>Seus Projetos</h2>
 
