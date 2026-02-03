@@ -1,20 +1,41 @@
-import { useFormState } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { authSchema, type LoginDTO } from "../../../../schemas/auth.schema";
 import styles from "./LoginForm.module.css";
 import { useAuthStore } from "../../../../stores/auth.store";
 import { loginService } from "../../../../services/auth.service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export function LoginForm() {
-  const {register,handleSubmit,formState}= useFormState<LoginDTO>({
-      resolver: zodResolver(authSchema)
-
-  })
-
+const {
+  register,
+  handleSubmit,
+  formState: { isSubmitting, errors },
+} = useForm<LoginDTO>({
+  resolver: zodResolver(authSchema),
+});
   const auth = useAuthStore()
-  const onSubmit = async(data:LoginDTO)=>{
-    const response = await loginService(data)
-    auth.login(response.user,response.token)
+  const navigate = useNavigate()
+
+const onSubmit = async (data: LoginDTO) => {
+  try {
+    const response = await loginService(data);
+
+    auth.login(response.user, response.token);
+    navigate("/DashBoard");
+  } catch (error: unknown) {
+
+    if (axios.isAxiosError(error)) {
+      const message =
+        error.response?.data?.msg || "Erro ao fazer login";
+      toast.error(message);
+    } else {
+      toast.error("Erro inesperado");
+    }
   }
+};
   return (
     <div className={styles.card}>
       <h2>Entrar</h2>
@@ -31,9 +52,15 @@ export function LoginForm() {
           <input type="password" {...register("password")}className={styles.input} />
         </label>
 
-        <button className={styles.button} type="submit">Entrar</button>
+      <button
+  className={styles.button}
+  type="submit"
+  disabled={isSubmitting}
+>
+  {isSubmitting? "Entrando..." : "Entrar"}
+</button>
 
-        {formState.errors.email?.message}
+        {errors.email?.message}
       </form>
     </div>
   );

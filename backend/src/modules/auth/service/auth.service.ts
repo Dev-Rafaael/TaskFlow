@@ -1,34 +1,29 @@
 import jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
-import { RegisterDTO } from "../dtos/register.dto";
-import { LoginDTO } from "../dtos/login.dto";
+import { LoginDTO, RegisterDTO } from "../schema/auth.schema";
+import { PrismaAuthRepository } from "../repository/auth.repository";
 
 
 
 
 export class AuthService {
-  constructor(private repo: any) {}
+  constructor(private repo: PrismaAuthRepository) {}
 
-  async register({ email, password }: RegisterDTO) {
-    if (!email) {
-      throw Error("Email é Obrigatorio");
-    }
-    const emailExist = await this.repo.findByEmail(email);
-    if (emailExist) {
-      throw new Error("Email ja Existe");
-    }
-    if (!password || password.length < 6) {
-      throw Error("Senha Muito Fraca");
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await  this.repo.create({
-      email,
-      password: hashedPassword,
-    });
-    return user;
+async register({ name, email, password,dataNascimento }: RegisterDTO) {
+  const emailExist = await this.repo.findByEmail(email);
+  if (emailExist) {
+    throw new Error("Email já existe");
   }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  return this.repo.create({
+    name,
+    email,
+    password: hashedPassword,
+    dataNascimento
+  });
+}
 
   async login({email,password}:LoginDTO) {
    const user = await this.repo.findByEmail(email)
@@ -42,8 +37,15 @@ export class AuthService {
       throw new Error('Credenciais Inválidas')
    }
 
-   const token = jwt.sign({sub:user.id},'fake-jwt-token',{expiresIn:'1d'})
+   const token = jwt.sign({sub:user.id},process.env.JWT_SECRET!,{expiresIn:'1d'})
 
-   return {token}
+   return {token,
+    user:{
+      id:user.id,
+      name:user.name,
+      dataNascimento:user.dataNascimento,
+      email:user.email,
+    }
+   }
   }
 }

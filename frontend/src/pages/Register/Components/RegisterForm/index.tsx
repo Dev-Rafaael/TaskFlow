@@ -1,62 +1,75 @@
-import styles from "./RegisterForm.module.css";
-import { useForm} from "react-hook-form";
-import { createUserSchema, type createUserDTO } from "../../../../schemas/user.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createUser } from "../../../../services/user.service";
+  import styles from "./RegisterForm.module.css";
+  import { useForm} from "react-hook-form";
 
-export default function RegisterForm() {
-  const {register,handleSubmit,formState: {errors,isSubmitting}}= useForm<createUserDTO>({
-      resolver: zodResolver(createUserSchema)
+  import { zodResolver } from "@hookform/resolvers/zod";
+  import { registerService } from "../../../../services/auth.service";
+  import { registerSchema, type RegisterDTO } from "../../../../schemas/auth.schema";
+  import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-  })
 
-  const onSubmit = async(data:createUserDTO)=>{
-    await createUser({
-      name: data.name,
-      email:data.email,
-      password: data.password
+  export default function RegisterForm() {
+    const {register,handleSubmit,reset,formState: {errors,isSubmitting}}= useForm<RegisterDTO>({
+        resolver: zodResolver(registerSchema)
+
     })
-  }
-  return (
-    <div className={styles.card}>
-      <h2>Criar conta</h2>
-      <p className={styles.subtitle}>Preencha os dados para se cadastrar</p>
+    const navigate = useNavigate()
+    const onSubmit = async(data:RegisterDTO)=>{
+      await registerService(data)
+      toast.success('Criado Com Sucesso')
+      reset();
+      navigate('/login/')
+    }
+    return (
+      <div className={styles.card}>
+        <h2>Criar conta</h2>
+        <p className={styles.subtitle}>Preencha os dados para se cadastrar</p>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <label className={styles.label}>
-          Nome Completo
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <label className={styles.label}>
+            Nome Completo
+            <input
+            {...register("name")}
+              type="text"
+              placeholder="Nome completo"
+              className={styles.input}
+            
+            />
+            {errors.name && <span>{errors.name.message}</span>}
+          </label>
+      
+          <label className={styles.label}>
+            Email
+            <input {...register("email")} type="email" placeholder="E-mail"  className={styles.input} />
+            {errors.email && <span>{errors.email.message}</span>}
+          </label>
+          <label className={styles.label}>
+            Senha
+            <input {...register("password")} type="password" placeholder="Senha"  className={styles.input} />
+            {errors.password && <span>{errors.password.message}</span>}
+          </label>
+          <label className={styles.label}>
+            Confirme sua Senha
+            <input
+            {...register("confirmPassword")}
+              type="password"
+              placeholder="Confirmar senha"
+              className={styles.input}
+            />
+            {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
+          </label>
+          <label className={styles.label}>
+          Data de Nascimento
           <input
-           {...register("name")}
-            type="text"
-            placeholder="Nome completo"
+            type="date"
             className={styles.input}
-           
+            {...register("dataNascimento", { valueAsDate: true })}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.dataNascimento && <span>{errors.dataNascimento.message}</span>}
         </label>
-    
-        <label className={styles.label}>
-          Email
-          <input {...register("email")} type="email" placeholder="E-mail"  className={styles.input} />
-          {errors.email && <span>{errors.email.message}</span>}
-        </label>
-        <label className={styles.label}>
-          Senha
-          <input {...register("password")} type="password" placeholder="Senha"  className={styles.input} />
-          {errors.password && <span>{errors.password.message}</span>}
-        </label>
-        <label className={styles.label}>
-          Confirme sua Senha
-          <input
-           {...register("confirmPassword")}
-            type="password"
-            placeholder="Confirmar senha"
-            className={styles.input}
-          />
-           {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
-        </label>
-        <button className={styles.button} type="submit" disabled={isSubmitting}>Criar conta</button>
-      </form>
-    </div>
-  );
-}
+
+          <button className={styles.button} type="submit" disabled={isSubmitting}>Criar conta</button>
+        </form>
+      </div>
+    );
+  }

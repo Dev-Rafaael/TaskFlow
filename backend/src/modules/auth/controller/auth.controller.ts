@@ -1,3 +1,4 @@
+import { authSchema, registerSchema } from "../schema/auth.schema";
 import { AuthService } from "../service/auth.service";
 
 export class AuthController {
@@ -6,7 +7,9 @@ export class AuthController {
 
     async register(req:any,res:any){
         try {
-          const result =  await this.authService.register(req.body)
+
+            const data = registerSchema.parse(req.body)
+          const result =  await this.authService.register(data)
             return res.status(201).json(result)
         } catch (error:any) {
             return res.status(400).json({msg:error.message})
@@ -15,7 +18,8 @@ export class AuthController {
 
     async login(req:any,res:any){
         try {
-            const result = await this.authService.login(req.body)
+            const data = authSchema.parse(req.body)
+            const result = await this.authService.login(data)
         return res.status(200).json(result) 
         } catch (error:any) {
             return res.status(400).json({msg:error.message})

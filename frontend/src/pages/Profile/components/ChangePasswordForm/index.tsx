@@ -6,6 +6,7 @@ import {
 import styles from "./ChangePasswordForm.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updatePassword } from "../../../../services/user.service";
+import { useAuthStore } from "../../../../stores/auth.store";
 
 export default function ChangePasswordForm() {
   const {
@@ -15,9 +16,11 @@ export default function ChangePasswordForm() {
   } = useForm<ChangePasswordDTO>({
     resolver: zodResolver(changePasswordSchema),
   });
-
+const user = useAuthStore((state)=> state.user)
   const onSubmit = async (data: ChangePasswordDTO) => {
-    await updatePassword(data);
+    if (user?.id) {
+      await updatePassword(String(user.id), data);
+    }
   };
   return (
     <section className={styles.card}>

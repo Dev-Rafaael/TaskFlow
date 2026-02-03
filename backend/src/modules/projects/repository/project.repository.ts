@@ -1,6 +1,5 @@
+import { prisma } from "../../../libs/prisma"
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
 
 
 export class PrismaProjectRepository{

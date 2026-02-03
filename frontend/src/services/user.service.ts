@@ -1,33 +1,21 @@
-import api from "../lib/api/api"
+import api from "../lib/api/api";
 import type { ChangePasswordDTO, UserDTO } from "../schemas/user.schema";
 
+export const getUser = async (id: string): Promise<UserDTO> => {
+  if (!id) throw new Error("ID inválido");
+  const { data } = await api.get(`/user/${id}`);
+  return data;
+};
 
+export const updateUser = async (
+  id: string,
+  data: Partial<UserDTO>
+): Promise<UserDTO> => {
+  const { data: response } = await api.patch(`/user/${id}`, data);
+  return response;
+};
 
-
-export const getUsers = async(): Promise<UserDTO[]> => {
-        const {data} = await api.get('/users/')
-        return data    
-    
-}
-
-export const getUser = async (id:string): Promise<UserDTO> =>{
-        if(!id) throw new Error('Credenciais Invalidas')
-        const {data} = await api.get(`/users/${id}`)
-        return data;
- 
-}
-export const createUser = async(data:{name:string,email:string,password:string}):Promise<UserDTO> =>{   
-        const response = await api.post('/users/',data)
-        return response.data
-}
-
-export const updateUser = async(id:string,data:Partial<UserDTO>):Promise<UserDTO>=>{
-        const response = await api.patch(`/users/${id}`,data)
-        return response.data
-  
-}
-export const updatePassword = async(data: ChangePasswordDTO)=>{
-       const response = await api.patch("/users/password", data);
+export const updatePassword = async (id:string,data: ChangePasswordDTO) => {
+  const response = await api.patch(`/user/password/${id}`, data);
   return response.data;
-  
-}
+};

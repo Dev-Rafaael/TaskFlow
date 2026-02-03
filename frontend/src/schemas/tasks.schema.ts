@@ -5,6 +5,7 @@ export const taskSchema = z.object({
     id: z.string().uuid(),
     title: z.string().min(6),
      status: z.string().min(4),
+     description:z.string().min(6),
     priority: z.string().min(6),
      dueDate: z.string().date(),
     completedAt: z.string().date(),
@@ -16,6 +17,8 @@ export const createTaskSchema = z.object({
   title: z.string().min(6),
      status: z.string().min(4),
     priority: z.string().min(6),
+     description:z.string().min(6),
+     dueDate: z.string().date(),
 })
 
 

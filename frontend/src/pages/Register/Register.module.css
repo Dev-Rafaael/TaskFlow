@@ -10,7 +10,7 @@ font-family: Inter, system-ui, -apple-system;
 
 
 .left {
-  width: 100%;
+  width: 90%;
 display: flex;
 align-items: center;
 justify-content: center;
