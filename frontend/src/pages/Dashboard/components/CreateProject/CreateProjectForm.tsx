@@ -23,6 +23,7 @@ export default function CreateProjectForm({ onSuccess }: Props) {
 
   const onSubmit = async (data: CreateProjectDTO) => {
     await createProjects(data);
+    
     toast.success('Criado com Sucesso!!')
     onSuccess();
   };
@@ -49,7 +50,6 @@ export default function CreateProjectForm({ onSuccess }: Props) {
         <input type="color" {...register("color")} />
         {errors.color && <span>{errors.color.message}</span>}
       </label>
-
       <button
         type="submit"
         disabled={isSubmitting}

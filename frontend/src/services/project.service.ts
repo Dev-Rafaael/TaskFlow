@@ -2,13 +2,13 @@ import api from "../lib/api/api";
 import type { CreateProjectDTO, ProjectDTO } from "../schemas/project.schema";
 
 export const getProjects = async () => {
-  const { data } = (await api.get("/projects/")).data;
-  return data;
+  const response = await api.get("/projects/");
+  return response.data;
 };
 
 export const getProject = async (id: string) => {
-  const { data } = (await api.get(`/projects/${id}`)).data;
-  return data;
+  const response = await api.get(`/projects/${id}`);
+  return response.data;
 };
 export const createProjects = async (data: CreateProjectDTO) => {
   const response = await api.post("/projects/", data);

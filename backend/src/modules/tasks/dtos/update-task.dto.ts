@@ -7,5 +7,4 @@ export interface UpdateTaskDTO {
   priority?: "LOW" | "MEDIUM" | "HIGH";
   dueDate?: Date;
   status?: "TODO" | "DOING" | "DONE";
-  completedAt?: Date | null;
 }

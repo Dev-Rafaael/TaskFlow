@@ -3,5 +3,6 @@ export interface UpdateProjectDTO {
   userId: string
   name?: string
   description?: string
-  color?: string
+  color?: string,
+  
 }

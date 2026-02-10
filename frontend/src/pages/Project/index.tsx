@@ -1,21 +1,28 @@
+
+import ProjectLayout from "./ProjectLayout";
 import ProjectHeader from "./Components/ProjectHeader";
 import ProjectInfo from "./Components/ProjectInfo";
-import TaskList from "./Components/Tasks/Components/TaskList";
-import styles from "./Project.module.css";
-
+import KanbanBoard from "./Components/Tasks/Board/KanbanBoard";
+import CreateTaskModal from "./Components/Tasks/Components/CreateTaskModal";
 
 
 export default function Project() {
+
   return (
-    <main className={styles.page}>
-      <ProjectHeader
-        title="TaskFlow"
-        description="Organize suas tarefas e acompanhe o progresso do projeto"
+    <>
+      <ProjectLayout
+        header={
+          <ProjectHeader
+            title="TaskFlow"
+            description="Organize suas tarefas"
+          />
+        }
+        info={<ProjectInfo />}
+        content={<KanbanBoard />}
       />
 
-      <ProjectInfo />
-
-      <TaskList />
-    </main>
+      <CreateTaskModal
+      />
+    </>
   );
 }

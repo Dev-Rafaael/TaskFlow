@@ -1,9 +1,13 @@
 import { prisma } from "../../../libs/prisma"
+import { CreateProjectDTO } from "../dtos/create-project.dto"
+import { UpdateProjectDTO } from "../dtos/update-project.dto"
 
-
+interface CreateProjectRepositoryInput extends CreateProjectDTO {
+  userId: string
+}
 
 export class PrismaProjectRepository{
-   async create (data:any){
+   async create (data:CreateProjectRepositoryInput){
     return prisma.project.create({data})
 }
 async findByUserId (userId:string){
@@ -17,15 +21,15 @@ async findById(id:string){
     })
 }
 
-  async update (id:string,data:any){
+  async update (projectId:string,data:UpdateProjectDTO){
     return prisma.project.update({
-        where: {id},
+        where: {id:projectId},
         data
     })
   }
-  async delete (id:string){
-    return prisma.project.delete({
-        where: {id}
-    })
-  }
+ async delete(projectId: string): Promise<void> {
+  await prisma.project.delete({
+    where: { id: projectId }
+  })
+}
 }

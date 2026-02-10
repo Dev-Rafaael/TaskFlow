@@ -6,19 +6,18 @@ export const taskSchema = z.object({
     title: z.string().min(6),
      status: z.string().min(4),
      description:z.string().min(6),
-    priority: z.string().min(6),
+    priority: z.string(),
      dueDate: z.string().date(),
-    completedAt: z.string().date(),
-    projectId: z.string().uuid(),
-    userId: z.string().uuid(),
+    projectId: z.string(),
+    userId: z.string(),
 })
 
 export const createTaskSchema = z.object({
   title: z.string().min(6),
-     status: z.string().min(4),
-    priority: z.string().min(6),
-     description:z.string().min(6),
-     dueDate: z.string().date(),
+    status: z.string().min(4),
+    priority: z.string(),
+    description:z.string().min(6),
+    dueDate: z.string().date(),
 })
 
 

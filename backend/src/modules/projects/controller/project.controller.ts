@@ -3,8 +3,10 @@ import { ProjectService } from "../service/project.service";
 export class ProjectController {
     constructor(private projectService:ProjectService){}
     async create(req:any,res:any){
+         
         try {
-            const newProject = await this.projectService.create(req.body)
+            const userId = '8d8d73b4-52fc-4037-820f-1a3f4ba0ca4f'
+            const newProject = await this.projectService.create(req.body,userId)
             return res.status(201).json(newProject)
         } catch (error:any) {
             return res.status(400).json({msg: error.message})
@@ -13,7 +15,7 @@ export class ProjectController {
 
     async list(req:any,res:any){
         try {
-            const {userId} = req.query
+            const {userId} = req.user.id
             const projects = await this.projectService.list(userId)
             return res.status(200).json(projects)
         } catch (error:any) {

@@ -1,4 +1,4 @@
 export interface ListTasksByProjectDTO {
-  userId: string;
-  projectId:string;
+  projectId: string
+  userId: string
 }

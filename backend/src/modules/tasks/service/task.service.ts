@@ -2,53 +2,67 @@ import { CreateTaskDTO } from "../dtos/create-task.dto";
 import { DeleteTaskDTO } from "../dtos/delete-task.dto";
 import { ListTasksByProjectDTO } from "../dtos/list-task.dto";
 import { UpdateTaskDTO } from "../dtos/update-task.dto";
+import { Task } from "@prisma/client"
 
 
+type CreateTaskRepositoryInput =
+  CreateTaskDTO & {projectId:string, userId: string }
+
+export interface TaskRepository{
+ create(data: CreateTaskRepositoryInput): Promise<Task>
+  update(taskId: string, data: Partial<Task>): Promise<Task>
+  delete(taskId: string): Promise<void>
+  findByUserId(userId: string): Promise<Task[]>
+  findByProject(projectId: string, userId: string): Promise<Task[]>
+  findById(id: string): Promise<Task | null>
+ 
+}
 export class TaskService {
-  constructor(private repo: any) {}
+  constructor(private repo: TaskRepository) {}
 
-  async create({ title, userId, projectId, description, priority }: CreateTaskDTO) {
-    if (!title) throw new Error("Title is required");
+  async create(data: CreateTaskDTO,userId:string,projectId:string) {
+    if (!data.title) throw new Error("Title is required");
     if (!userId) throw new Error("UserId is required");
-     if (!projectId) throw new Error("ProjectId is required");
-   return await this.repo.create({
-    title,
-    description,
-    priority,
-    projectId,
+ const projectTask = {
+   ...data,
     userId,
-  });
+    projectId
+  };
+  return this.repo.create(projectTask)
   }
-async listByProject({ projectId, userId }: ListTasksByProjectDTO) {
+async findByProject({ projectId,userId }: ListTasksByProjectDTO) {
   if (!userId) throw new Error("UserId is required");
-  if (!projectId) throw new Error("ProjectId is required");
+  if (!projectId) throw new Error("projectId is required");
 
-  return this.repo.findByProjectId(projectId, userId);
+  return this.repo.findByProject(projectId,userId);
 }
 
 
 
-  async update({ taskId,userId, ...data }: UpdateTaskDTO) {
-    const task = await this.repo.findById(taskId)
+async update({ taskId, userId, ...data }: UpdateTaskDTO) {
+  const task = await this.repo.findById(taskId)
 
-    if(!task)throw new Error("Task not found");
-    if(task.userId !== userId)throw new Error("Owner not found");
+  if (!task) throw new Error("Task not found")
+  if (task.userId !== userId) throw new Error("Owner not found")
 
-     if (data.status === "DONE") {
-      data.completedAt = new Date();
-    }
+  const updateData: any = { ...data }
 
-    if (data.status && data.status !== "DONE") {
-      data.completedAt = null;
-    }
-    return await this.repo.update(taskId,data)
-
+  if (data.status === "DONE") {
+    updateData.completedAt = new Date()
   }
+
+  if (data.status && data.status !== "DONE") {
+    updateData.completedAt = null
+  }
+
+  return this.repo.update(taskId, updateData)
+}
+
   async delete({ taskId, userId }: DeleteTaskDTO) {
     const task = await this.repo.findById(taskId)
     if(!task) throw new Error("Task not found");
     if(task.userId !== userId)throw new Error("Owner not found");
 
-     await this.repo.delete(taskId)
+     await this.repo.delete( taskId )
   }
 }

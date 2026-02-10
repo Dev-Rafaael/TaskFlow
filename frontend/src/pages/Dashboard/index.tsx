@@ -1,11 +1,12 @@
-import { useState } from "react";
+
 import ProjectCard from "./components/ProjectCard";
 import StatsCard from "./components/StatsCard";
 import styles from "./Dashboard.module.css";
 import CreateProject from "./components/CreateProject";
+import { useModalStore } from "../../stores/ui/modal.store";
 
 export default function Dashboard() {
-  const [isOpen, setIsOpen] = useState(false);
+  const openModal = useModalStore(state=> state.openModal)
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -16,11 +17,11 @@ export default function Dashboard() {
 
         <button
           className={styles.primaryButton}
-          onClick={() => setIsOpen(true)}
+          onClick={() => openModal('createProject')}
         >
           + Novo Projeto
         </button>
-        <CreateProject isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <CreateProject />
       </header>
 
       <section className={styles.stats}>

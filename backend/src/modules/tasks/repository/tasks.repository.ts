@@ -1,30 +1,47 @@
+import { Task } from "@prisma/client"
 import { prisma } from "../../../libs/prisma"
+import { CreateTaskDTO, TaskDTO } from "../schema/task.schema"
+import { TaskRepository } from "../service/task.service"
 
+interface CreateTaskRepositoryInput extends CreateTaskDTO {
+  projectId: string
+  userId: string
+}
 
-export class PrismaTasksRepository{
-   async create (data:any){
-    return await prisma.task.create(data)
+export class PrismaTasksRepository implements TaskRepository
+{
+async create(data: CreateTaskRepositoryInput): Promise<Task> {
+  return prisma.task.create({ data })
+
 }
 async findByUserId (userId:string){
- return await prisma.task.findMany({
-    where: {userId}
- })
+    return prisma.task.findMany({
+        where: {userId}
+    })
 }
 async findById(id:string){
     return await prisma.task.findUnique({
         where: {id}
     })
 }
+findByProject(projectId: string, userId: string) {
+  return prisma.task.findMany({
+    where: {
+      projectId,
+      userId
+    }
+  })
+}
 
-  async update (id:string,data:any){
+  async update (taskId: string, data: Partial<Task>){
     return await prisma.task.update({
-        where:{id},
+        where:{id:taskId},
         data
     })
   }
-  async delete (id:string){
+  async delete (taskId:string){
    await prisma.task.delete({
-    where:{id}
+    where:{id:taskId}
    })
   }
 }

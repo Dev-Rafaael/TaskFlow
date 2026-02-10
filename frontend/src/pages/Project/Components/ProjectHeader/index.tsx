@@ -1,12 +1,17 @@
-import type { ProjectHeaderProps } from "../../../../types/types";
 
+
+import { useModalStore } from "../../../../stores/ui/modal.store";
 import styles from "./ProjectHeader.module.css";
 
-
+type Props = {
+  title: string;
+  description?: string;
+};
 export default function ProjectHeader({
-  title,
+title,
   description,
-}: ProjectHeaderProps) {
+}: Props) {
+    const openModal = useModalStore(state => state.openModal)
   return (
     <header className={styles.container}>
       <div className={styles.left}>
@@ -21,7 +26,7 @@ export default function ProjectHeader({
            Configurações
         </button>
 
-        <button className={styles.primaryButton}>
+        <button className={styles.primaryButton } onClick={()=>openModal('createTask')}>
           + Nova tarefa
         </button>
       </div>

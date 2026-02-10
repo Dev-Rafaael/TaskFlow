@@ -4,6 +4,7 @@ type User = {
  id:number;
  name:string;
  email:string
+ dataNascimento:string
 }
 
 type AuthState = {
