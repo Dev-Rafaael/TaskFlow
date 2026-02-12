@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import type { TaskDTO } from "../schemas/tasks.schema";
-import { createTask, getTask, updateTaskService } from "../services/task.service";
+import type { TaskDTO } from "../features/tasks/Types/tasks.schema";
+import { createTask, getTask, updateTaskService } from "../features/tasks/Service/task.service";
+
 
 
 

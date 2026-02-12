@@ -10,7 +10,7 @@ import { verifyToken } from "./middlewares/auth.middlewate";
 const routes = Router()
 
 routes.use('/auth',authRoutes)
-routes.use('/projects',verifyToken,ProjectRoutes)
+routes.use('/projects',ProjectRoutes)
 routes.use('/tasks',taskRoutes)
-routes.use('/user',verifyToken,userRoutes)
+routes.use('/user',userRoutes)
 export {routes}

@@ -1,7 +1,4 @@
-import { updatePassword } from "./../../../../../frontend/src/services/user.service";
-import { ChangePasswordDTO } from "../dtos/change-password.dto";
-import { DeleteUserDTO } from "../dtos/delete-user.dto";
-import { ListUserDTO } from "../dtos/list-user.dto";
+
 import { UpdateUserDTO } from "../dtos/update-user.dto";
 import * as bcrypt from "bcrypt";
 

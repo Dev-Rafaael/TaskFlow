@@ -1,10 +1,7 @@
 import { create } from "zustand";
-import {
-  createProjects,
-  getProjects,
-  updateProjectService,
-} from "../services/project.service";
-import type { CreateProjectDTO, ProjectDTO } from "../schemas/project.schema";
+import type { CreateProjectDTO, ProjectDTO } from "../features/projects/Types/project.schema";
+import { createProjects, getProjects, updateProjectService } from "../features/projects/Services/project.service";
+
 
 interface ProjectStore {
   projects: ProjectDTO[];

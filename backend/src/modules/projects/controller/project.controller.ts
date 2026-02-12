@@ -5,7 +5,7 @@ export class ProjectController {
     async create(req:any,res:any){
          
         try {
-            const userId = '8d8d73b4-52fc-4037-820f-1a3f4ba0ca4f'
+            const userId = '576046b9-90b5-4af4-b7b6-1805c553a289'
             const newProject = await this.projectService.create(req.body,userId)
             return res.status(201).json(newProject)
         } catch (error:any) {

@@ -1,23 +1,37 @@
-export interface ProjectCardProps {
+export interface Project {
+  id: string;
   title: string;
   description?: string;
   color?: string;
-  progress?: number; // 0 a 100
+  progress: number;
+  createdAt: string;
+}
+export interface ProjectCardProps {
+  project: Project;
   onClick?: () => void;
 }
+
+
+
 export interface ProjectHeaderProps {
   title: string;
   description?: string;
 }
+export interface Task {
+  id: string;
+  title: string;
+  description?: string;
+  status: "backlog" | "in_progress" | "done";
+  priority?: "low" | "medium" | "high";
+  dueDate?: string;
+}
+
 export interface KanbanColumnProps {
   title: string;
-  count: number;
-  status: "backlog" | "in_progress" | "done";
+  status: Task["status"];
+  tasks: Task[];
 }
 
 export interface TaskCardProps {
-  title: string;
-  description?: string;
-  priority?: "low" | "medium" | "high";
-  dueDate?: string;
+  task: Task;
 }

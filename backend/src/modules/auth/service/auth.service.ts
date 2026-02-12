@@ -3,7 +3,7 @@ import * as bcrypt from "bcrypt";
 import { LoginDTO, RegisterDTO } from "../schema/auth.schema";
 import { PrismaAuthRepository } from "../repository/auth.repository";
 
-
+  
 
 
 export class AuthService {

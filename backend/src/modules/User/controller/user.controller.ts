@@ -15,9 +15,9 @@ export class UserController {
 
   async update(req: any, res: any) {
     try {
-      const { userId, ...data } = req.body;
-
-      const updated = await this.userService.update(userId, data);
+     const userId = '576046b9-90b5-4af4-b7b6-1805c553a289'
+        const updated = await this.userService.update(userId, req.body);
+    return res.status(200).json(updated);
       return res.status(200).json(updated);
     } catch (error: any) {
       return res.status(400).json({ msg: error.message });

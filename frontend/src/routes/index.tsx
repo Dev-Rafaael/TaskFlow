@@ -1,15 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Dashboard from "../pages/Dashboard";
-import Project from "../pages/Project";
-import Profile from "../pages/Profile";
-import NotFound from "../pages/NotFound";
+
 
 import { PrivateRoute } from "../routes/PrivateRoute";
-import { PrivateLayout } from "../components/Layout/PrivateLayout";
+import LoginPage from "../pages/LoginPage";
+import Register from "../pages/RegisterPage";
+import { PrivateLayout } from "../shared/components/Layout/PrivateLayout";
+import DashboardPage from "../pages/DashboardPage";
+import ProjectPage from "../pages/ProjectPage";
+import UserPage from "../pages/UserPage";
+import NotFound from "../pages/NotFoundPage";
+
 
 
 export const router = createBrowserRouter([
@@ -17,7 +19,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "login", element: <Login /> },
+      { path: "login", element: <LoginPage /> },
       { path: "cadastro", element: <Register /> },
 
       {
@@ -27,9 +29,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
-          { path: "dashboard", element: <Dashboard /> },
-          { path: "projetos", element: <Project /> },
-          { path: "profile", element: <Profile /> },
+          { path: "dashboard", element: <DashboardPage /> },
+          { path: "projetos/:projectId", element: <ProjectPage /> },
+          { path: "profile", element: <UserPage /> },
         ],
       },
 
